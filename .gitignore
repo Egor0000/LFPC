@@ -1,0 +1,17 @@
+*.iml
+
+.idea/
+.vscode/
+
+/out/
+/target
+/.classpath
+/.project
+target
+/Notes
+/log/
+/logs/
+/lib/
+
+*.ipr
+*.iws
