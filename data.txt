@@ -1,12 +1,13 @@
 VN={S, P,Q },
 VT={a, b,c,d,e,f } ,
 P= {
-1. S -> aD
-2. D -> bE
-3. E -> cF
-4. F -> dD
-5. E -> dL
-6. L -> aL
-7. L -> bL
-8. L -> c
+1. S -> aP
+2. S -> bQ
+3. P -> bP
+4. P -> cP
+5. P -> dQ
+6. P -> e
+7. Q -> eQ
+8. Q -> fQ
+9. Q -> a
  }
