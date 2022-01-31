@@ -28,22 +28,31 @@ public class GraphBuilder {
         graph.setAttribute("ui.quality");
         graph.setAttribute("ui.antialias");
         graph.setAttribute("ui.stylesheet", "node { size:15px; text-padding: 30px; text-style: bold; text-offset: -10px, -10px;}" +
-                " node:clicked {text-size:30px; text-color:red; } edge {text-size:15px; text-style:bold; text-offset: 30px, 00px;}" +
-                "sprite{fill-mode:none; text-style:bold; text-size:15px;}");
+                " node:clicked {text-size:30px; text-color:red; } node#0{size:1px;}" +
+                " edge {text-size:15px; text-style:bold; text-offset: 30px, 00px;}" +
+                "sprite{fill-mode:none; text-style:bold; text-size:15px;} node.endPoint{stroke-mode: plain; stroke-width: 3px; stroke-color: red;}");
 
         graph.display();
 
         ArrayList<MyPair> edges = getGraphNodes(file);
+        graph.addNode("0");
 
         for(int i =0; i<edges.size(); i++){
             MyPair myPair  = edges.get(i);
+            if(i==0){
+                graph.addEdge("00", "0", myPair.key());
+            }
             ArrayList<String> secondNodes = getEdgeVal(myPair.key(), myPair.value(), String.valueOf(i));
             addEdge(graph, "Q"+String.valueOf(i), myPair.key(), secondNodes.get(0), secondNodes.get(1));
+            if(myPair.value().length()==1){
+                graph.getNode(secondNodes.get(0)).setAttribute("ui.class", "endPoint");
+            }
         }
-//        addEdge(graph, "PPP", "P", "P", "l");
 
         for (Node node : graph) {
-            node.setAttribute("ui.label", node.getId());
+            if(!node.getId().equals("0")) {
+                node.setAttribute("ui.label", node.getId());
+            }
         }
 
     }
