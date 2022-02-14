@@ -1,0 +1,12 @@
+VN={S, P,Q },
+VT={a, b,c,d,e,f } ,
+P= {
+1. S -> aF
+2. F -> bF
+3. F -> cD
+4. S -> bS
+5. D -> cS
+6. D -> a
+7. F -> a
+ }
+ 

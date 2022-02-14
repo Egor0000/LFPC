@@ -1,15 +1,14 @@
 package md.utm.isa.lab1;
 
+import md.utm.isa.utils.FileUtil;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.spriteManager.Sprite;
 import org.graphstream.ui.spriteManager.SpriteManager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class GraphBuilder {
@@ -42,7 +41,7 @@ public class GraphBuilder {
             if(i==0){
                 graph.addEdge("00", "0", myPair.key());
             }
-            ArrayList<String> secondNodes = getEdgeVal(myPair.key(), myPair.value(), String.valueOf(i));
+            ArrayList<String> secondNodes = getEdgeVal( myPair.value(), String.valueOf(i));
             addEdge(graph, "Q"+String.valueOf(i), myPair.key(), secondNodes.get(0), secondNodes.get(1));
             if(myPair.value().length()==1){
                 graph.getNode(secondNodes.get(0)).setAttribute("ui.class", "endPoint");
@@ -71,7 +70,7 @@ public class GraphBuilder {
     }
 
     private ArrayList<MyPair> getGraphNodes(String filePath) throws Exception{
-        File file = new File(filePath);
+        File file = FileUtil.getFileFromResources(filePath);
         Scanner reader = new Scanner(file);
 
         LinkedHashMap<String, String> graphParts = new LinkedHashMap<>();
@@ -101,7 +100,7 @@ public class GraphBuilder {
         return nodes;
     }
 
-    private ArrayList<String> getEdgeVal(String firstNode, String edgeVal, String id) throws Exception {
+    private ArrayList<String> getEdgeVal(String edgeVal, String id) throws Exception {
         int edgeLength = edgeVal.length();
         ArrayList<String> secondNode = new ArrayList<>();
         if(edgeLength<1)
