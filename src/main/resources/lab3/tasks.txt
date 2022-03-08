@@ -1,0 +1,10 @@
+1. Define syntax of programming language
+2. Compute sample code with 2 functions
+    2.1. Function 1: main
+    2.2. Function 2: some computations
+Ex: main(){
+        f1();
+    }
+
+3. Define a grammar
+4. Write program to perform tokenization

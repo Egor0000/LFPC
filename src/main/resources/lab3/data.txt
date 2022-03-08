@@ -1,0 +1,16 @@
+def main () {
+    let arr[] = f1();
+    let i =0;
+    while (i<arr.len()){
+        println(i + " " + " element of arr is " + a[i]);
+        i++;
+    }
+}
+
+def f1 () {
+    let a[5] = [];
+    for (let x = 0; x<a.len(); x++){
+        a[x] = x;
+    }
+    return a;
+}
