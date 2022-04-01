@@ -396,7 +396,17 @@ public class Grammar {
     }
 
     public String printChomskyNormalForm(){
-        String result = String.format("NT = {%s}, \n P={%s}", finalNonTerminals.toString(), finalChomsky.toString());
+        String prods = "";
+        for (Production production: finalChomsky){
+            String prod = "";
+            prod = String.format("%-2s -> %s", production.getLeftPart().getState().getValue(),
+                    production.getRightPart().getStates().stream()
+                            .map(State::getValue)
+                            .collect(Collectors.joining()));
+            prods = prods.concat(prod+"\n");
+        }
+
+        String result = String.format("NT = {%s}, \n P={\n%s}", finalNonTerminals.toString(), prods);
         return result;
     }
 
