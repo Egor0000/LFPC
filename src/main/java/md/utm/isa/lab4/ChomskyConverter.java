@@ -6,10 +6,10 @@ import md.utm.isa.utils.StringUtil;
 import java.io.File;
 import java.util.Scanner;
 
+
 public class ChomskyConverter {
     private String filePath;
     private Grammar grammar;
-    private Grammar chomskyFinal;
 
     public ChomskyConverter(String filePath) throws Exception {
         this.filePath = filePath;
@@ -19,6 +19,7 @@ public class ChomskyConverter {
         eliminateNonProductive();
         eliminateInaccessibleSymbols();
         convertToChomskyGrammar();
+        System.out.println(this.grammar.printChomskyNormalForm());
     }
 
     // Convert file input to Grammar
