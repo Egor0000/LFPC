@@ -1,0 +1,5 @@
+1. Eliminate e-productions
+2. Eliminate any renaming
+3. Eliminate inaccessible symbols
+4. Eliminate then non-productive symbols
+5. Obtain the Chomsky Normal Form

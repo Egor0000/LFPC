@@ -1,0 +1,11 @@
+G=(VN, VT, P, S) VN=S, A, B, C, D VT=a, b
+P=1. SabAB
+2. AaBSBab
+3. ABS
+4. AaA
+5. Ab
+6. BBA
+7. BaBaBb
+8. Bb
+9. Bε
+10. CAS
