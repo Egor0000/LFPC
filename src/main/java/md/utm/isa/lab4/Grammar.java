@@ -201,13 +201,14 @@ public class Grammar {
 
          Set<Production> targetProductions = productions.stream().filter(prod -> !tempProductions.contains(prod)).collect(Collectors.toSet());
 
-//         // count all possible state combinations
+         // count all possible state combinations
 //        Map<String, Integer> stateCountTable = countSubstrings();
-//        addTerminalsToGrammar();
+          Set<Production> prod = addTerminalsToGrammar();
 
 
         Set<Production> newProds;
         Map<String, Integer> stateCountTable = countSubstrings(productions);
+        addAllFinalTerminals(productions);
 
         // remove all terminals
         newProds = addTerminalsToGrammar();
@@ -288,7 +289,6 @@ public class Grammar {
                 .anyMatch(state -> (state.isNonTerminal() && !productiveStates.contains(state)) || state.isEmpty());
     }
 
-
     public void visitStates(){
         this.accessibleStates = new HashSet<>();
         visitRecursively(new State(initialSymbol, false, true, false));
@@ -357,9 +357,6 @@ public class Grammar {
                 String[] ss = s.split("((?<=(A-Za-z))|(?=[A-Za-z]))");;
                 for (int i = 0; i < ss.length-1; i++) {
                     for (int j = i + 1; j < ss.length; j++) {
-//                        if (j-i<=1){
-//                            continue;
-//                        }
 
                         String inner = "";
                         for (int k = i; k<=j; k++){
@@ -383,7 +380,6 @@ public class Grammar {
 
                         // add final terminal states
                         // WOW! O(n^4)
-                        addFinalTerminals(sstring);
 
                         Integer count = substringCounter.get(sstring);
                         count = (count==null)?1:(count+1);
@@ -399,7 +395,7 @@ public class Grammar {
         String prods = "";
         for (Production production: finalChomsky){
             String prod = "";
-            prod = String.format("%-2s -> %s", production.getLeftPart().getState().getValue(),
+            prod = String.format("%-3s -> %s", production.getLeftPart().getState().getValue(),
                     production.getRightPart().getStates().stream()
                             .map(State::getValue)
                             .collect(Collectors.joining()));
@@ -408,6 +404,13 @@ public class Grammar {
 
         String result = String.format("NT = {%s}, \n P={\n%s}", finalNonTerminals.toString(), prods);
         return result;
+    }
+
+    private void addAllFinalTerminals(Set<Production> productions){
+        productions.stream().forEach(production -> {
+            String s = production.getRightPart().getStates().stream().map(State::getValue).collect(Collectors.joining());
+            addFinalTerminals(s);
+        });
     }
 
     private void addFinalTerminals(String string){
@@ -433,7 +436,7 @@ public class Grammar {
                     Left left = new Left(possibleSymbol);
                     Right right = new Right(t.getValue());
                     Production newProduction = new Production(left, right);
-                    finalChomsky.add(newProduction);
+//                    finalChomsky.add(newProduction);
                     newProductions.add(newProduction);
                     break;
                 }
@@ -472,6 +475,4 @@ public class Grammar {
     }
 
     //todo for refactoring: copy to a new object final chomsky
-
-
 }
