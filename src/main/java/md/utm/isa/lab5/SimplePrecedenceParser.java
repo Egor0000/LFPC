@@ -261,7 +261,7 @@ public class SimplePrecedenceParser {
                 } else if (precedenceSet.size()==2 && precedenceSet.contains("=")) {
                     modList.add("=");
                 } else if (precedenceSet.size() == 0) {
-                    throw new Exception("Parsing Error.");
+                    throw new Exception(String.format("Parsing Error when adding precedence relation %s %s.", s, nextChar));
                 }else {
                     throw new Exception("Parsing Error. A precedence table cell contains more than 2 entries");
                 }
