@@ -1,0 +1,2 @@
+G=(VN, VT, P, S), VN={S,D,A,Z}, VT={a,b,*,-}
+P={S→D. A→DZ. D→b. Z→ -. D→DA. D→a. Z→*}

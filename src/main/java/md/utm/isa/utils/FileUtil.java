@@ -46,4 +46,28 @@ public class FileUtil {
 
         writer.close();
     }
+
+    static public String readRowFromFile(String filePath, int lineNr) throws Exception {
+        File file;
+        try {
+             file = FileUtil.getFileFromResources(filePath);
+        }catch (Exception ex){
+            throw new Exception("No file with path " + filePath);
+        }
+
+        Scanner reader = new Scanner(file);
+        int ct = 0;
+        while (reader.hasNextLine()){
+            if (ct == lineNr) {
+                return reader.nextLine();
+            }
+                ct++;
+        }
+
+        if ((ct-1)!=lineNr) {
+            throw new Exception("Line not found");
+        }
+
+        return "";
+    }
 }

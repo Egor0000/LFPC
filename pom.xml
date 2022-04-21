@@ -43,6 +43,13 @@
       <version>1.18.22</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.re2j/re2j -->
+    <dependency>
+      <groupId>com.google.re2j</groupId>
+      <artifactId>re2j</artifactId>
+      <version>1.6</version>
+    </dependency>
+
 
   </dependencies>
 
